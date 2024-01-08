@@ -29,12 +29,8 @@ pub mod users {
         {
         }
 
-        impl<'a, T> CreateUserTrait<'a> for T where
-            T: Service<&'a CreateUser, Response = User, Error = CreateUserError>
-        {
-        }
-
-        pub type CreateUserService = Arc<dyn for<'a> CreateUserTrait<'a>>;
+        pub type CreateUserService =
+            Arc<dyn for<'a> Service<&'a CreateUser, Response = User, Error = CreateUserError>>;
     }
 
     pub mod list_users {
